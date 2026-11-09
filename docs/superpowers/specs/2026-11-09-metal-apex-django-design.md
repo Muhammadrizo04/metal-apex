@@ -141,7 +141,7 @@ Buyruq SQL dumpdan faqat `mx_posts` va `mx_postmeta` jadvallaridagi kerakli yozu
 | Aksessuarlar | O'sha ro'yxatning qolgan 15 tasi | 15 aksessuar, nom oxiridagi `,` `.` belgilari tozalanadi |
 | Matnlar | 8, 10, 12-sahifalar | `HomeContent`, inline'lar, `AboutPage`, `SiteSettings`. `[:uz]..[:ru]..[:]` belgilari ikki tilga ajratiladi |
 | Loyihalar | Slayder va 14-sahifa `works` | `Project`, nomsiz. Bir xil fayl qayta olinmaydi |
-| Videolar | `works_video_*` | 6 ta `Video` |
+| Videolar | `works_video_*` | 5 ta `Video`. `XuN47W_qGYk` import qilinmaydi: akkaunti o'chirilgani uchun ochilmaydi |
 | Hamkorlar | `partners_images` | Eski bazada bo'sh, hech narsa import qilinmaydi. Logotiplar admin'dan qo'shiladi |
 
 Maxsus holatlar:

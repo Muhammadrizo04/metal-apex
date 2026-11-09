@@ -141,7 +141,8 @@ class Command(BaseCommand):
     def _import_videos(self):
         n = 0
         while url := self._plain(POST_HOME, f"works_video_{n}_url"):
-            Video.objects.get_or_create(url=url, defaults={"order": n})
+            if Video(url=url).youtube_id not in seed.DEAD_VIDEO_IDS:
+                Video.objects.get_or_create(url=url, defaults={"order": n})
             n += 1
 
     def _hero_source(self) -> int | None:

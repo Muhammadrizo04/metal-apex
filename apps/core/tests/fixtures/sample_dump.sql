@@ -59,6 +59,7 @@ INSERT INTO `mx_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (35, 8, 'montage_components_0_text_1', '[:uz]devorni tekislash[:ru]выравнивание[:]'),
 (36, 8, 'montage_components_0_text_2', '[:uz]Profil[:ru]Профиль[:]'),
 (37, 8, 'works_video_0_url', 'https://youtu.be/CAGMRjMMQxI'),
+(50, 8, 'works_video_1_url', 'https://www.youtube.com/watch?v=XuN47W_qGYk'),
 (38, 8, 'header_instagram', 'https://www.instagram.com/metalapex.uz/'),
 (39, 12, 'contact_address', '[:uz]Qo\'qon, Temura Malik ko\'chasi, 79A[:ru]Коканд[:]'),
 (40, 12, 'contact_phone_1', '+998 93 503 23 23'),
