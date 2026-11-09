@@ -7,3 +7,4 @@ staticfiles/
 .superpowers/
 __pycache__/
 *.pyc
+!apps/core/tests/fixtures/*.sql
