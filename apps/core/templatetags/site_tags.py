@@ -38,5 +38,5 @@ def spec_url(spec):
     """Rasm fayli yo'q yoki buzilgan bo'lsa sahifa yiqilmasligi uchun bo'sh qiymat qaytaradi."""
     try:
         return spec.url
-    except (OSError, ValueError):
+    except (AttributeError, OSError, ValueError):
         return ""

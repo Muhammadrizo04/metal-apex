@@ -1,5 +1,5 @@
 from apps.catalog.models import Panel, Pattern
-from apps.core.models import HomeContent, Stat
+from apps.core.models import HomeContent, Layer, Stat
 from apps.core.tests.utils import MediaTestCase, image_file
 from apps.projects.models import Partner, Project, Video
 
@@ -13,6 +13,10 @@ class HomeEmptyTests(MediaTestCase):
         response = self.client.get("/uz/")
         for section in ("hamkorlar", "videolar", "loyihalar", "katalog-namuna"):
             self.assertNotContains(response, f'id="{section}"')
+
+    def test_layers_without_published_panels_render(self):
+        Layer.objects.create(home=HomeContent.load(), title="Tashqi qatlam")
+        self.assertEqual(self.client.get("/uz/").status_code, 200)
 
     def test_missing_image_file_does_not_crash(self):
         pattern = Pattern.objects.create(series=1, name_uz="A")

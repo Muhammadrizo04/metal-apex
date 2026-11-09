@@ -1,6 +1,7 @@
 from urllib.parse import urlencode
 
 from django.shortcuts import get_object_or_404, render
+from django.utils.cache import patch_vary_headers
 
 from apps.leads.forms import LeadForm
 
@@ -52,7 +53,9 @@ def panel_list(request):
         "panel_total": published.count(),
     }
     template = "catalog/_grid.html" if request.headers.get("X-Requested-With") == "fetch" else "catalog/list.html"
-    return render(request, template, context)
+    response = render(request, template, context)
+    patch_vary_headers(response, ["X-Requested-With"])
+    return response
 
 
 def accessories(request):

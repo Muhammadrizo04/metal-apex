@@ -1,12 +1,15 @@
 from django.db import models
 from django.urls import reverse
 from imagekit.models import ImageSpecField
-from pilkit.processors import ResizeToFit
+from pilkit.processors import ResizeToFit, Transpose
 
 
 def _spec(width):
     return ImageSpecField(
-        source="image", processors=[ResizeToFit(width, width, upscale=False)], format="WEBP", options={"quality": 82}
+        source="image",
+        processors=[Transpose(), ResizeToFit(width, width, upscale=False)],
+        format="WEBP",
+        options={"quality": 82},
     )
 
 

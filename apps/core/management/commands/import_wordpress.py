@@ -129,9 +129,11 @@ class Command(BaseCommand):
         seen_files = set()
         for order, wp_id in enumerate(self._project_ids()):
             rel = self.files.get(wp_id, "")
-            if rel in seen_files or Project.objects.filter(wp_id=wp_id).exists():
+            if rel in seen_files:
                 continue
             seen_files.add(rel)
+            if Project.objects.filter(wp_id=wp_id).exists():
+                continue
             project = Project(wp_id=wp_id, order=order, is_published=not rel.endswith(seed.HIDDEN_PROJECT_SUFFIXES))
             if self._attach(project.image, wp_id):
                 project.save()

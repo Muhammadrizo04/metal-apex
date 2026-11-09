@@ -1,9 +1,16 @@
 from pathlib import Path
 
+from django.conf import settings
 from django.test import SimpleTestCase, TestCase
 
 from apps.core.ui import UI
 from config.settings import absolute_sqlite
+
+
+class VideoEmbedTests(SimpleTestCase):
+    def test_embed_sends_referrer_youtube_requires(self):
+        script = (settings.BASE_DIR / "static/js/site.js").read_text(encoding="utf-8")
+        self.assertIn('frame.referrerPolicy = "strict-origin-when-cross-origin"', script)
 
 
 class DatabasePathTests(SimpleTestCase):

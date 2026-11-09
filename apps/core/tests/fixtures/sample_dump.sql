@@ -27,6 +27,7 @@ INSERT INTO `mx_posts` (`ID`, `post_content`, `post_title`, `post_status`, `post
 (202, '', '11', 'inherit', 'attachment'),
 (203, '', '2', 'inherit', 'attachment'),
 (205, '', '14', 'inherit', 'attachment'),
+(206, '', '2 nusxa', 'inherit', 'attachment'),
 (204, 'qavs ), ( ichida', 'Montaj', 'inherit', 'attachment');
 
 INSERT INTO `mx_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
@@ -43,9 +44,10 @@ INSERT INTO `mx_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (11, 202, '_wp_attached_file', '2024/07/11.jpg'),
 (12, 203, '_wp_attached_file', '2024/07/2.jpg'),
 (14, 205, '_wp_attached_file', '2024/07/14.jpg'),
+(15, 206, '_wp_attached_file', '2024/07/2.jpg'),
 (13, 204, '_wp_attached_file', '2024/07/montage.png'),
 (20, 16, 'products', 'a:9:{i:0;s:3:\"101\";i:1;s:3:\"102\";i:2;s:3:\"103\";i:3;s:3:\"104\";i:4;s:3:\"105\";i:5;s:3:\"106\";i:6;s:3:\"107\";i:7;s:3:\"108\";i:8;s:3:\"109\";}'),
-(21, 14, 'works', 'a:2:{i:0;s:3:\"201\";i:1;s:3:\"203\";}'),
+(21, 14, 'works', 'a:3:{i:0;s:3:\"201\";i:1;s:3:\"203\";i:2;s:3:\"206\";}'),
 (22, 8, 'slider_images', 'a:3:{i:0;s:3:\"205\";i:1;s:3:\"202\";i:2;s:3:\"201\";}'),
 (23, 8, 'montage_img', '[:uz]204[:ru]204[:]'),
 (24, 12, 'contact_phone_2', '[:uz]+998 94 447 77 17[:ru]+998 94 447 77 17[:]'),

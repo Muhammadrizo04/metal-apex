@@ -21,6 +21,7 @@ document.addEventListener("click", (event) => {
   frame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(video.dataset.youtubeId)}?autoplay=1`;
   frame.allow = "autoplay; encrypted-media; picture-in-picture";
   frame.allowFullscreen = true;
+  frame.referrerPolicy = "strict-origin-when-cross-origin";
   frame.title = video.getAttribute("aria-label") || "Video";
   frame.className = "video-frame";
   video.replaceWith(frame);

@@ -1,3 +1,9 @@
+import io
+
+from django.conf import settings
+from django.core.files.uploadedfile import SimpleUploadedFile
+from PIL import Image
+
 from apps.catalog.models import Accessory, Color, Panel, Pattern
 from apps.core.models import SiteSettings
 from apps.core.tests.utils import MediaTestCase, image_file
@@ -79,6 +85,26 @@ class CatalogTests(MediaTestCase):
         response = self.client.get("/uz/katalog/", {"naqsh": "6"}, HTTP_X_REQUESTED_WITH="fetch")
         self.assertNotContains(response, "<html")
         self.assertContains(response, "A6-01")
+
+    def test_fragment_and_page_vary_by_request_header(self):
+        for headers in ({}, {"HTTP_X_REQUESTED_WITH": "fetch"}):
+            self.assertIn("X-Requested-With", self.client.get("/uz/katalog/", **headers)["Vary"])
+
+    def test_phone_photo_orientation_applied(self):
+        buffer = io.BytesIO()
+        exif = Image.Exif()
+        exif[0x0112] = 6
+        Image.new("RGB", (400, 200), "gray").save(buffer, "JPEG", exif=exif)
+        panel = Panel.objects.create(
+            code="Y1-01", pattern=self.stone, image=SimpleUploadedFile("telefon.jpg", buffer.getvalue())
+        )
+        panel.image_card.generate()
+        with panel.image_card.storage.open(panel.image_card.name) as handle:
+            self.assertEqual(Image.open(handle).size, (200, 400))
+
+    def test_swatch_caption_not_below_minimum_font(self):
+        css = (settings.BASE_DIR / "static/css/site.css").read_text(encoding="utf-8")
+        self.assertRegex(css, r"\.sw a \{[^}]*font-size: 14px")
 
     def test_only_used_colors_listed(self):
         colors = self.client.get("/uz/katalog/").context["color_links"]

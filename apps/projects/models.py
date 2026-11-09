@@ -2,7 +2,7 @@ from urllib.parse import parse_qs, urlparse
 
 from django.db import models
 from imagekit.models import ImageSpecField
-from pilkit.processors import ResizeToFit
+from pilkit.processors import ResizeToFit, Transpose
 
 
 class Project(models.Model):
@@ -14,10 +14,16 @@ class Project(models.Model):
     is_published = models.BooleanField("Saytda ko'rinsin", default=True)
 
     image_card = ImageSpecField(
-        source="image", processors=[ResizeToFit(900, 900, upscale=False)], format="WEBP", options={"quality": 82}
+        source="image",
+        processors=[Transpose(), ResizeToFit(900, 900, upscale=False)],
+        format="WEBP",
+        options={"quality": 82},
     )
     image_large = ImageSpecField(
-        source="image", processors=[ResizeToFit(1920, 1920, upscale=False)], format="WEBP", options={"quality": 85}
+        source="image",
+        processors=[Transpose(), ResizeToFit(1920, 1920, upscale=False)],
+        format="WEBP",
+        options={"quality": 85},
     )
 
     class Meta:

@@ -149,7 +149,7 @@ a { color: inherit; }
 .spec span { color: var(--mut); }
 .h3 { font: 700 21px var(--head); text-transform: uppercase; margin: 24px 0 8px; }
 .sw { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
-.sw a { background: #fff; border: 1px solid var(--line); padding: 4px; text-align: center; font-size: 12px; text-decoration: none; }
+.sw a { background: #fff; border: 1px solid var(--line); padding: 4px; text-align: center; font-size: 14px; text-decoration: none; overflow-wrap: anywhere; }
 .sw a:hover { border-color: var(--ink); }
 .sw a.on { border: 2px solid var(--cu-dark); }
 .sw img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; }

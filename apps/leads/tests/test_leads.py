@@ -2,6 +2,7 @@ from unittest.mock import Mock, patch
 
 import requests
 from django.contrib.auth import get_user_model
+from django.db import OperationalError
 from django.test import Client, TestCase, override_settings
 
 from apps.catalog.models import Panel, Pattern
@@ -78,6 +79,13 @@ class LeadTests(TestCase):
         for i in range(6):
             r = self.client.post(URL, VALID, HTTP_X_FORWARDED_FOR=f"10.0.0.{i}")
             self.assertEqual(r.status_code, 302)
+
+    def test_cache_failure_does_not_lose_lead(self, post):
+        post.return_value = ok_response()
+        with patch("apps.leads.throttle.cache.get", side_effect=OperationalError("no such table")):
+            response = self.client.post(URL, VALID)
+        self.assertRedirects(response, THANKS, fetch_redirect_response=False)
+        self.assertEqual(Lead.objects.count(), 1)
 
     def test_telegram_failure_still_succeeds(self, post):
         post.side_effect = requests.ConnectionError("xato")
