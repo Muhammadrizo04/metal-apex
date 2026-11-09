@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load site_tags %}
+{% block title %}{% t 'thanks_title' %} — Metal Apex{% endblock %}
+{% block seo %}<meta name="robots" content="noindex">{% endblock %}
+{% block content %}
+<section class="sec message"><div class="wrap">
+  <h1 class="t">{% t 'thanks_title' %}</h1>
+  <p class="mut">{% t 'thanks_text' %}</p>
+  <p><a class="btn" href="{% url 'catalog:list' %}">{% t 'btn_catalog' %} →</a></p>
+</div></section>
+{% endblock %}

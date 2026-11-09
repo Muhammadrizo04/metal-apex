@@ -2,6 +2,8 @@ from urllib.parse import urlencode
 
 from django.shortcuts import get_object_or_404, render
 
+from apps.leads.forms import LeadForm
+
 from .filters import filter_panels, parse_letter, parse_series
 from .models import Accessory, Color, Panel, Pattern
 
@@ -65,5 +67,5 @@ def detail(request, code):
     return render(
         request,
         "catalog/detail.html",
-        {"panel": panel, "siblings": [panel, *others[: MAX_SIBLINGS - 1]]},
+        {"panel": panel, "siblings": [panel, *others[: MAX_SIBLINGS - 1]], "lead_form": LeadForm()},
     )

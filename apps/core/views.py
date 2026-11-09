@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 from apps.catalog.models import Panel, Pattern
 from apps.core.models import HomeContent
+from apps.leads.forms import LeadForm
 from apps.projects.models import Partner, Project, Video
 
 
@@ -28,5 +29,6 @@ def home(request):
             "projects": list(Project.objects.filter(is_published=True)[:5]),
             "videos": [v for v in Video.objects.all() if v.youtube_id],
             "partners": Partner.objects.all(),
+            "lead_form": LeadForm(),
         },
     )

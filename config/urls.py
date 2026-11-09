@@ -16,5 +16,6 @@ if settings.DEBUG or settings.SERVE_MEDIA:
 urlpatterns += i18n_patterns(
     path("", include("apps.core.urls")),
     path("", include("apps.catalog.urls")),
+    path("", include("apps.leads.urls")),
     prefix_default_language=True,
 )

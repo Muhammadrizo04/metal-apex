@@ -1,0 +1,30 @@
+{% load site_tags %}{% if lead_form %}
+<section class="lead" id="buyurtma"><div class="wrap lead-in">
+  <div>
+    <div class="lbl">{% if lead_kicker %}{{ lead_kicker }}{% else %}{% t 'form_kicker' %}{% endif %}</div>
+    <h2 class="t">{% if lead_title %}{{ lead_title }}{% else %}{% t 'form_title' %}{% endif %}</h2>
+    <p>{% if site.address %}{{ site.address }}<br>{% endif %}
+      {% if site.phone_1 %}<a href="tel:{{ site.phone_1|cut:' ' }}">{{ site.phone_1 }}</a>{% endif %}{% if site.phone_2 %} · <a href="tel:{{ site.phone_2|cut:' ' }}">{{ site.phone_2 }}</a>{% endif %}
+      {% if site.email_1 %}<br><a href="mailto:{{ site.email_1 }}">{{ site.email_1 }}</a>{% endif %}</p>
+  </div>
+  <form method="post" action="{% url 'leads:submit' %}" class="lead-form">
+    {% csrf_token %}
+    {% for error in lead_form.non_field_errors %}<div class="err">{{ error }}</div>{% endfor %}
+    <input type="hidden" name="panel_code" value="{% if panel_code %}{{ panel_code }}{% else %}{{ lead_form.panel_code.value|default_if_none:'' }}{% endif %}">
+    <div class="trap" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <label>{% t 'form_name' %} *
+      <input type="text" name="name" required maxlength="120" autocomplete="name" value="{{ lead_form.name.value|default_if_none:'' }}">
+      {% for error in lead_form.name.errors %}<span class="err">{{ error }}</span>{% endfor %}
+    </label>
+    <label>{% t 'form_phone' %} *
+      <input type="tel" name="phone" required maxlength="40" autocomplete="tel" value="{{ lead_form.phone.value|default_if_none:'' }}">
+      {% for error in lead_form.phone.errors %}<span class="err">{{ error }}</span>{% endfor %}
+    </label>
+    <label>{% t 'form_company' %}
+      <input type="text" name="company" maxlength="160" autocomplete="organization" value="{{ lead_form.company.value|default_if_none:'' }}">
+      {% for error in lead_form.company.errors %}<span class="err">{{ error }}</span>{% endfor %}
+    </label>
+    <button class="btn" type="submit">{% t 'form_send' %} →</button>
+  </form>
+</div></section>
+{% endif %}

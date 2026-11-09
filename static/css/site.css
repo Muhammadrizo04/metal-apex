@@ -153,7 +153,24 @@ a { color: inherit; }
 .sw a.on { border: 2px solid var(--cu-dark); }
 .sw img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; }
 
+.lead { background: var(--ink); color: #f4f1ec; padding-block: 64px; }
+.lead-in { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.lead .lbl { color: #e0935a; }
+.lead p { color: #cfc8bf; font-size: 15px; line-height: 1.8; margin: 0; }
+.lead a { color: inherit; text-decoration: none; }
+.lead a:hover { text-decoration: underline; }
+.lead-form { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.lead-form label { width: 100%; font-size: 14px; color: #cfc8bf; }
+.lead-form input { width: 100%; display: block; background: transparent; border: 0; border-bottom: 1px solid #76706a; color: #fff; padding: 10px 0; font: 400 16px var(--body); }
+.lead-form input:focus { outline: 0; border-bottom-color: #e0935a; }
+.lead .btn:hover { text-decoration: none; }
+.err { display: block; color: #ffb08a; font-size: 14px; margin-top: 4px; }
+.trap { position: absolute; left: -9999px; height: 1px; overflow: hidden; }
+.message { min-height: 50vh; }
+
 @media (max-width: 760px) {
+  .lead-in { grid-template-columns: 1fr; gap: 28px; }
+  .lead { padding-block: 44px; }
   .filters, .det { grid-template-columns: 1fr; }
   .sw { grid-template-columns: repeat(3, 1fr); }
   .wrap { padding-inline: 18px; }
