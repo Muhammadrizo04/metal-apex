@@ -1,0 +1,5 @@
+{% load site_tags %}
+<button class="video" type="button" data-youtube-id="{{ video.youtube_id }}" aria-label="{% t 'play_video' %}{% if video.title %}: {{ video.title }}{% endif %}">
+  <img src="https://img.youtube.com/vi/{{ video.youtube_id }}/hqdefault.jpg" alt="" loading="lazy">
+  <span class="play" aria-hidden="true">▶</span>
+</button>

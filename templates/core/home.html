@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load site_tags %}
+{% block content %}
+{% url 'catalog:list' as u_catalog %}
+<section class="hero">
+  <div class="hero-text">
+    {% if home.hero_kicker %}<div class="lbl">{{ home.hero_kicker }}</div>{% endif %}
+    {% if home.hero_title %}<h1>{{ home.hero_title }}</h1>{% endif %}
+    {% if home.hero_text %}<p class="mut">{{ home.hero_text }}</p>{% endif %}
+    <div class="hero-btns">
+      <a class="btn" href="{{ u_catalog }}">{% t 'btn_catalog' %} →</a>
+      <a class="btn btn-o" href="#buyurtma">{% t 'btn_price' %}</a>
+    </div>
+  </div>
+  {% if home.hero_image %}<img class="hero-img" src="{{ home.hero_image.url }}" alt="{{ home.hero_title }}" fetchpriority="high">{% endif %}
+</section>
+
+{% if stats %}
+<section class="sec nums-sec"><div class="wrap nums">
+  {% for stat in stats %}<div><strong>{{ stat.display }}</strong><span>{{ stat.title }}</span></div>{% endfor %}
+</div></section>
+{% endif %}
+
+{% if layers %}
+<section class="sec"><div class="wrap layers">
+  <div>
+    <div class="lbl">{{ home.layers_kicker }}</div>
+    <h2 class="t">{{ home.layers_title }}</h2>
+    {% for layer in layers %}<div class="li"><b>{{ layer.title }}</b><p>{{ layer.text }}</p></div>{% endfor %}
+  </div>
+  <div class="stack" aria-hidden="true">
+    {% spec_url layer_panel.image_card as stack_src %}
+    <div class="s1"{% if stack_src %} style="background-image:url('{{ stack_src }}')"{% endif %}>{% t 'layer_steel' %}</div>
+    <div class="s2">{% t 'layer_foam' %}</div>
+    <div class="s3">{% t 'layer_foil' %}</div>
+  </div>
+</div></section>
+{% endif %}
+
+{% if advantages %}
+<section class="sec"><div class="wrap">
+  <div class="lbl">{{ home.adv_kicker }}</div>
+  <h2 class="t">{{ home.adv_title }}</h2>
+  <div class="adv">
+    {% for item in advantages %}<div><i>{{ forloop.counter|stringformat:"02d" }}</i><b>{{ item.title }}</b><p>{{ item.text }}</p></div>{% endfor %}
+  </div>
+</div></section>
+{% endif %}
+
+{% if panels %}
+<section class="sec" id="katalog-namuna"><div class="wrap">
+  <div class="lbl">{{ home.catalog_kicker }}</div>
+  <h2 class="t">{{ home.catalog_title }}</h2>
+  <div class="chips">
+    <a class="on" href="{{ u_catalog }}">{% t 'filter_all' %}</a>
+    {% for pattern in patterns %}<a href="{{ u_catalog }}?naqsh={{ pattern.series }}">{{ pattern.name }}</a>{% endfor %}
+  </div>
+  <div class="grid">{% for panel in panels %}{% include "includes/panel_card.html" %}{% endfor %}</div>
+  <p class="after-grid"><a class="btn btn-o" href="{{ u_catalog }}">{% t 'all_panels' n=panel_total %} →</a></p>
+</div></section>
+{% endif %}
+
+{% if projects %}
+<section class="sec" id="loyihalar"><div class="wrap">
+  <div class="lbl">{{ home.projects_kicker }}</div>
+  <h2 class="t">{{ home.projects_title }}</h2>
+  <div class="proj">
+    {% for project in projects %}{% spec_url project.image_card as src %}{% if src %}
+    <figure{% if forloop.first %} class="big"{% endif %}><img src="{{ src }}" alt="{{ project.title }}" loading="lazy">{% if project.title %}<figcaption>{{ project.title }}{% if project.city %} · {{ project.city }}{% endif %}</figcaption>{% endif %}</figure>
+    {% endif %}{% endfor %}
+  </div>
+</div></section>
+{% endif %}
+
+{% if videos %}
+<section class="sec" id="videolar"><div class="wrap">
+  <div class="lbl">{{ home.videos_kicker }}</div>
+  <h2 class="t">{{ home.videos_title }}</h2>
+  <div class="vid">{% for video in videos %}{% include "includes/video_card.html" %}{% endfor %}</div>
+</div></section>
+{% endif %}
+
+{% if montage_steps %}
+<section class="sec"><div class="wrap">
+  <div class="lbl">{{ home.montage_kicker }}</div>
+  <h2 class="t">{{ home.montage_title }}</h2>
+  <div class="steps">
+    {% if home.montage_image %}<img src="{{ home.montage_image.url }}" alt="{{ home.montage_kicker }}" loading="lazy">{% endif %}
+    <div class="list">
+      {% for step in montage_steps %}<div><span class="n">{{ forloop.counter|stringformat:"02d" }}</span><b>{{ step.title }}</b><p>{{ step.text }}</p></div>{% endfor %}
+    </div>
+  </div>
+</div></section>
+{% endif %}
+
+{% if partners %}
+<section class="sec" id="hamkorlar"><div class="wrap">
+  <div class="lbl">{{ home.partners_title }}</div>
+  <div class="logos">{% for partner in partners %}<div><img src="{{ partner.logo.url }}" alt="{{ partner.name }}" loading="lazy"></div>{% endfor %}</div>
+</div></section>
+{% endif %}
+
+{% include "includes/lead_form.html" with lead_kicker=home.form_kicker lead_title=home.form_title %}
+{% endblock %}

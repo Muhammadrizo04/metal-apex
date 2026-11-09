@@ -8,11 +8,21 @@ register = template.Library()
 
 
 @register.simple_tag
-def t(key):
+def t(key, **kwargs):
     lang = (get_language() or "uz")[:2]
-    return UI[key].get(lang) or UI[key]["uz"]
+    text = UI[key].get(lang) or UI[key]["uz"]
+    return text.format(**kwargs) if kwargs else text
 
 
 @register.simple_tag(takes_context=True)
 def lang_url(context, lang):
     return translate_url(context["request"].get_full_path(), lang)
+
+
+@register.simple_tag
+def spec_url(spec):
+    """Rasm fayli yo'q yoki buzilgan bo'lsa sahifa yiqilmasligi uchun bo'sh qiymat qaytaradi."""
+    try:
+        return spec.url
+    except (OSError, ValueError):
+        return ""

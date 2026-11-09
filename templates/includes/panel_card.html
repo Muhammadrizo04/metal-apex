@@ -1,0 +1,6 @@
+{% load site_tags %}{% spec_url panel.image_card as src %}
+<a class="card" href="{{ panel.get_absolute_url }}">
+  {% if src %}<img src="{{ src }}" alt="{{ panel.code }} — {{ panel.pattern.name }}" loading="lazy">{% endif %}
+  <b>{{ panel.code }}</b>
+  <small>{{ panel.pattern.name }}{% if panel.color %} · {{ panel.color.name }}{% endif %}</small>
+</a>
