@@ -1,0 +1,25 @@
+{% load site_tags i18n %}{% get_current_language as LANG %}
+{% url 'catalog:list' as u_catalog %}{% url 'projects:list' as u_projects %}{% url 'core:about' as u_about %}{% url 'core:contact' as u_contact %}
+{% lang_url 'uz' as u_uz %}{% lang_url 'ru' as u_ru %}
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="{% url 'core:home' %}">METAL APEX</a>
+    <nav class="nav" aria-label="{% t 'menu' %}">
+      <a href="{{ u_catalog }}">{% t 'nav_products' %}</a>
+      <a href="{{ u_projects }}">{% t 'nav_projects' %}</a>
+      <a href="{{ u_about }}">{% t 'nav_about' %}</a>
+      <a href="{{ u_contact }}">{% t 'nav_contact' %}</a>
+      <span class="langs"><a href="{{ u_uz }}"{% if LANG == 'uz' %} class="on"{% endif %} hreflang="uz">UZ</a> / <a href="{{ u_ru }}"{% if LANG == 'ru' %} class="on"{% endif %} hreflang="ru">RU</a></span>
+    </nav>
+    <details class="burger">
+      <summary aria-label="{% t 'menu' %}"><span></span><span></span><span></span></summary>
+      <div class="burger-menu">
+        <a href="{{ u_catalog }}">{% t 'nav_products' %}</a>
+        <a href="{{ u_projects }}">{% t 'nav_projects' %}</a>
+        <a href="{{ u_about }}">{% t 'nav_about' %}</a>
+        <a href="{{ u_contact }}">{% t 'nav_contact' %}</a>
+        <span class="langs"><a href="{{ u_uz }}"{% if LANG == 'uz' %} class="on"{% endif %}>UZ</a> / <a href="{{ u_ru }}"{% if LANG == 'ru' %} class="on"{% endif %}>RU</a></span>
+      </div>
+    </details>
+  </div>
+</header>

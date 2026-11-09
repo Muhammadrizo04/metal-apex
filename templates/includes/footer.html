@@ -1,0 +1,13 @@
+{% load site_tags %}{% now "Y" as year %}
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span>© {{ year }} Metal Apex. {% t 'rights' %}</span>
+    <span class="socials">
+      {% if site.instagram %}<a href="{{ site.instagram }}" rel="noopener" target="_blank">Instagram</a>{% endif %}
+      {% if site.facebook %}<a href="{{ site.facebook }}" rel="noopener" target="_blank">Facebook</a>{% endif %}
+      {% if site.youtube %}<a href="{{ site.youtube }}" rel="noopener" target="_blank">YouTube</a>{% endif %}
+      {% if site.telegram %}<a href="{{ site.telegram }}" rel="noopener" target="_blank">Telegram</a>{% endif %}
+      {% if site.x %}<a href="{{ site.x }}" rel="noopener" target="_blank">X</a>{% endif %}
+    </span>
+  </div>
+</footer>

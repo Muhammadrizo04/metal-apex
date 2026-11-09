@@ -1,0 +1,19 @@
+{% load static site_tags i18n %}{% get_current_language as LANG %}<!doctype html>
+<html lang="{{ LANG }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% t 'default_title' %}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{% t 'default_description' %}{% endblock %}">
+  {% block seo %}{% endblock %}
+  <link rel="preload" href="{% static 'fonts/oswald-latin-700-normal.woff2' %}" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+</head>
+<body>
+  {% include "includes/header.html" %}
+  <main>{% block content %}{% endblock %}</main>
+  {% include "includes/footer.html" %}
+  <script src="{% static 'js/site.js' %}" defer></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

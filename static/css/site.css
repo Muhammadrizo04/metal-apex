@@ -1,0 +1,65 @@
+@font-face { font-family: Oswald; font-weight: 700; font-display: swap; src: url(../fonts/oswald-latin-700-normal.woff2) format("woff2"); unicode-range: U+0000-02FF, U+2000-206F, U+20AC, U+2122; }
+@font-face { font-family: Oswald; font-weight: 700; font-display: swap; src: url(../fonts/oswald-cyrillic-700-normal.woff2) format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: Inter; font-weight: 400; font-display: swap; src: url(../fonts/inter-latin-400-normal.woff2) format("woff2"); unicode-range: U+0000-02FF, U+2000-206F, U+20AC, U+2122; }
+@font-face { font-family: Inter; font-weight: 400; font-display: swap; src: url(../fonts/inter-cyrillic-400-normal.woff2) format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: Inter; font-weight: 600; font-display: swap; src: url(../fonts/inter-latin-600-normal.woff2) format("woff2"); unicode-range: U+0000-02FF, U+2000-206F, U+20AC, U+2122; }
+@font-face { font-family: Inter; font-weight: 600; font-display: swap; src: url(../fonts/inter-cyrillic-600-normal.woff2) format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+:root {
+  --bg: #f4f1ec;
+  --ink: #1c1c1c;
+  --mut: #5d564f;
+  --line: #ddd6cc;
+  --cu: #c46a26;
+  --cu-dark: #a8561a;
+  --head: Oswald, "Arial Narrow", sans-serif;
+  --body: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.55 var(--body); overflow-x: clip; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--cu-dark); outline-offset: 2px; }
+
+.wrap { max-width: 1280px; margin-inline: auto; padding-inline: 32px; }
+.sec { padding-block: 64px; border-bottom: 1px solid var(--line); }
+.lbl { font-size: 14px; letter-spacing: .16em; font-weight: 600; color: var(--cu-dark); text-transform: uppercase; }
+.t { font-family: var(--head); font-weight: 700; text-transform: uppercase; font-size: clamp(32px, 4vw, 46px); line-height: 1.05; margin: 8px 0 26px; }
+.mut { color: var(--mut); }
+
+.btn { display: inline-block; background: var(--cu-dark); color: #fff; padding: 14px 24px; font: 600 15px var(--body); text-decoration: none; border: 1px solid var(--cu-dark); cursor: pointer; transition: background .15s, color .15s; }
+.btn:hover { background: #8e4814; border-color: #8e4814; }
+.btn-o { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn-o:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+.top { background: var(--bg); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
+.top-in { display: flex; justify-content: space-between; align-items: center; min-height: 68px; }
+.logo { font: 700 22px var(--head); letter-spacing: .06em; text-decoration: none; }
+.nav { display: flex; align-items: center; gap: 28px; font-size: 15px; }
+.nav a { text-decoration: none; color: var(--mut); }
+.nav a:hover { color: var(--ink); }
+.langs { font-weight: 600; color: var(--mut); }
+.langs a { text-decoration: none; color: var(--mut); }
+.langs a.on { color: var(--ink); }
+.burger { display: none; position: relative; }
+.burger summary { list-style: none; cursor: pointer; width: 44px; height: 44px; display: flex; flex-direction: column; justify-content: center; gap: 6px; align-items: flex-end; }
+.burger summary::-webkit-details-marker { display: none; }
+.burger summary span { width: 26px; height: 2px; background: var(--ink); }
+.burger-menu { position: absolute; right: 0; top: 52px; background: #fff; border: 1px solid var(--line); padding: 8px 20px; min-width: 220px; display: flex; flex-direction: column; }
+.burger-menu > a { padding: 12px 0; text-decoration: none; border-bottom: 1px solid var(--line); }
+.burger-menu .langs { padding: 12px 0; }
+
+.foot { padding-block: 26px; font-size: 14px; color: var(--mut); }
+.foot-in { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.socials { display: flex; gap: 18px; flex-wrap: wrap; }
+.socials a { text-decoration: none; }
+.socials a:hover { color: var(--ink); }
+
+@media (max-width: 760px) {
+  .wrap { padding-inline: 18px; }
+  .sec { padding-block: 44px; }
+  .nav { display: none; }
+  .burger { display: block; }
+}
