@@ -19,6 +19,14 @@ def lang_url(context, lang):
     return translate_url(context["request"].get_full_path(), lang)
 
 
+@register.filter
+def num(value):
+    """0.30 -> 0,3"""
+    if value in (None, ""):
+        return ""
+    return f"{float(value):g}".replace(".", ",")
+
+
 @register.simple_tag
 def spec_url(spec):
     """Rasm fayli yo'q yoki buzilgan bo'lsa sahifa yiqilmasligi uchun bo'sh qiymat qaytaradi."""

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load site_tags %}
+{% block title %}{% t 'tab_accessories' %} — Metal Apex{% endblock %}
+{% block content %}
+<section class="sec"><div class="wrap">
+  <div class="lbl">{% t 'cat_kicker' %}</div>
+  <h1 class="t">{% t 'tab_accessories' %}</h1>
+  <div class="tabs"><a href="{% url 'catalog:list' %}">{% t 'tab_panels' %}</a><a class="on" href="{% url 'catalog:accessories' %}">{% t 'tab_accessories' %}</a></div>
+  <div class="grid grid-top">
+    {% for item in items %}{% spec_url item.image_card as src %}
+    <div class="card card-static">{% if src %}<img src="{{ src }}" alt="{{ item.name }}" loading="lazy">{% endif %}<small class="acc-name">{{ item.name }}</small></div>
+    {% endfor %}
+  </div>
+</div></section>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load site_tags %}
+{% block title %}{{ panel.code }} — {{ panel.pattern.name }} — Metal Apex{% endblock %}
+{% block description %}{{ panel.code }}. {% t 'panel_intro' %}{% endblock %}
+{% block content %}
+<section class="sec"><div class="wrap">
+  <div class="bread"><a href="{% url 'catalog:list' %}">{% t 'catalog' %}</a> / <a href="{% url 'catalog:list' %}?naqsh={{ panel.pattern.series }}">{{ panel.pattern.name }}</a> / {{ panel.code }}</div>
+  <div class="det">
+    <div class="big-img">{% spec_url panel.image_large as src %}{% if src %}<img src="{{ src }}" alt="{{ panel.code }} — {{ panel.pattern.name }}">{% endif %}</div>
+    <div>
+      <div class="lbl">{% t 'pattern_kicker' name=panel.pattern.name %}</div>
+      <h1 class="code">{{ panel.code }}</h1>
+      <p class="mut">{% if panel.color %}{{ panel.color.name }}. {% endif %}{% if panel.description %}{{ panel.description }}{% else %}{% t 'panel_intro' %}{% endif %}</p>
+      <div class="spec">
+        {% if site.metal_mm %}<div><span>{% t 'spec_metal' %}</span><b>{{ site.metal_mm|num }} {% t 'unit_mm' %}</b></div>{% endif %}
+        {% if site.foam_mm %}<div><span>{% t 'spec_foam' %}</span><b>{{ site.foam_mm }} {% t 'unit_mm' %}</b></div>{% endif %}
+        {% if site.weight_kg_m2 %}<div><span>{% t 'spec_weight' %}</span><b>{{ site.weight_kg_m2|num }} {% t 'unit_kg' %}</b></div>{% endif %}
+        {% if site.lifetime_years %}<div><span>{% t 'spec_life' %}</span><b>{% t 'life_value' n=site.lifetime_years %}</b></div>{% endif %}
+        {% if panel.length_mm %}<div><span>{% t 'spec_length' %}</span><b>{{ panel.length_mm }} {% t 'unit_mm' %}</b></div>{% endif %}
+        {% if panel.width_mm %}<div><span>{% t 'spec_width' %}</span><b>{{ panel.width_mm }} {% t 'unit_mm' %}</b></div>{% endif %}
+      </div>
+      {% if siblings|length > 1 %}
+      <h2 class="h3">{% t 'other_colors' %}</h2>
+      <div class="sw">
+        {% for s in siblings %}{% spec_url s.image_card as sw_src %}
+        <a href="{{ s.get_absolute_url }}"{% if s.pk == panel.pk %} class="on" aria-current="page"{% endif %}>{% if sw_src %}<img src="{{ sw_src }}" alt="" loading="lazy">{% endif %}{{ s.code }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <p><a class="btn" href="#buyurtma">{% t 'btn_price' %} →</a></p>
+    </div>
+  </div>
+</div></section>
+{% include "includes/lead_form.html" with panel_code=panel.code %}
+{% endblock %}

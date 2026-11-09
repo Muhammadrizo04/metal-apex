@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static site_tags %}
+{% block title %}{% t 'cat_title' %} — Metal Apex{% endblock %}
+{% block content %}
+<section class="sec"><div class="wrap">
+  <div class="lbl">{% t 'cat_kicker' %}</div>
+  <h1 class="t">{% t 'cat_title' %}</h1>
+  <p class="mut cat-intro">{% t 'cat_intro' n=panel_total %}</p>
+  <div class="tabs"><a class="on" href="{% url 'catalog:list' %}">{% t 'tab_panels' %}</a><a href="{% url 'catalog:accessories' %}">{% t 'tab_accessories' %}</a></div>
+  <div id="catalog-body">{% include "catalog/_grid.html" %}</div>
+</div></section>
+{% endblock %}
+{% block extra_js %}<script src="{% static 'js/catalog.js' %}" defer></script>{% endblock %}
