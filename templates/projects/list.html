@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load site_tags %}
+{% block title %}{% t 'nav_projects' %} — Metal Apex{% endblock %}
+{% block content %}
+<section class="sec"><div class="wrap">
+  <div class="lbl">{% t 'projects_kicker' %}</div>
+  <h1 class="t">{% t 'projects_title' %}</h1>
+  <div class="gallery">
+    {% for project in projects %}{% spec_url project.image_card as src %}{% spec_url project.image_large as large %}{% if src %}
+    <figure>
+      <a href="{{ large|default:src }}" data-lightbox><img src="{{ src }}" alt="{{ project.title }}" loading="lazy"></a>
+      {% if project.title %}<figcaption>{{ project.title }}{% if project.city %} · {{ project.city }}{% endif %}</figcaption>{% endif %}
+    </figure>
+    {% endif %}{% endfor %}
+  </div>
+</div></section>
+<dialog id="lightbox" aria-label="{% t 'nav_projects' %}"><form method="dialog"><button aria-label="{% t 'close' %}">×</button></form><img alt=""></dialog>
+{% endblock %}

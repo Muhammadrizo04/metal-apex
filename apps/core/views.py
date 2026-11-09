@@ -1,7 +1,8 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from apps.catalog.models import Panel, Pattern
-from apps.core.models import HomeContent
+from apps.core.models import AboutPage, HomeContent
 from apps.leads.forms import LeadForm
 from apps.projects.models import Partner, Project, Video
 
@@ -32,3 +33,17 @@ def home(request):
             "lead_form": LeadForm(),
         },
     )
+
+
+def about(request):
+    return render(request, "core/about.html", {"about": AboutPage.load(), "lead_form": LeadForm()})
+
+
+def contact(request):
+    return render(request, "core/contact.html", {"lead_form": LeadForm()})
+
+
+def robots(request):
+    sitemap = request.build_absolute_uri("/sitemap.xml")
+    lines = ["User-agent: *", "Disallow: /boshqaruv/", "Disallow: /uz/buyurtma/", "Disallow: /ru/buyurtma/", f"Sitemap: {sitemap}"]
+    return HttpResponse("\n".join(lines) + "\n", content_type="text/plain")

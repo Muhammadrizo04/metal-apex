@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load site_tags %}
+{% block title %}{% t 'nav_contact' %} — Metal Apex{% endblock %}
+{% block content %}
+<section class="sec"><div class="wrap">
+  <h1 class="t">{% t 'nav_contact' %}</h1>
+  <div class="contacts">
+    {% if site.address %}<div><h2>{% t 'contact_address' %}</h2><p>{{ site.address }}</p></div>{% endif %}
+    {% if site.phone_1 or site.phone_2 %}<div><h2>{% t 'contact_phone' %}</h2>
+      {% if site.phone_1 %}<p><a href="tel:{{ site.phone_1|cut:' ' }}">{{ site.phone_1 }}</a></p>{% endif %}
+      {% if site.phone_2 %}<p><a href="tel:{{ site.phone_2|cut:' ' }}">{{ site.phone_2 }}</a></p>{% endif %}</div>{% endif %}
+    {% if site.email_1 or site.email_2 %}<div><h2>Email</h2>
+      {% if site.email_1 %}<p><a href="mailto:{{ site.email_1 }}">{{ site.email_1 }}</a></p>{% endif %}
+      {% if site.email_2 %}<p><a href="mailto:{{ site.email_2 }}">{{ site.email_2 }}</a></p>{% endif %}</div>{% endif %}
+  </div>
+  {% if site.map_url %}<iframe class="map" src="{{ site.map_url }}" title="{% t 'contact_address' %}" loading="lazy"></iframe>{% endif %}
+</div></section>
+{% include "includes/lead_form.html" %}
+{% endblock %}

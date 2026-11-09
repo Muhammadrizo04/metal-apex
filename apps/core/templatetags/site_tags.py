@@ -19,6 +19,12 @@ def lang_url(context, lang):
     return translate_url(context["request"].get_full_path(), lang)
 
 
+@register.simple_tag(takes_context=True)
+def abs_lang_url(context, lang):
+    request = context["request"]
+    return request.build_absolute_uri(translate_url(request.path, lang))
+
+
 @register.filter
 def num(value):
     """0.30 -> 0,3"""

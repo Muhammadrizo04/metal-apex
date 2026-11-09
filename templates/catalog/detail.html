@@ -2,6 +2,9 @@
 {% load site_tags %}
 {% block title %}{{ panel.code }} — {{ panel.pattern.name }} — Metal Apex{% endblock %}
 {% block description %}{{ panel.code }}. {% t 'panel_intro' %}{% endblock %}
+{% block og %}{% spec_url panel.image_card as og_src %}<meta property="og:title" content="{{ panel.code }} — Metal Apex">
+  <meta property="og:description" content="{% t 'panel_intro' %}">
+  {% if og_src %}<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ og_src }}">{% endif %}{% endblock %}
 {% block content %}
 <section class="sec"><div class="wrap">
   <div class="bread"><a href="{% url 'catalog:list' %}">{% t 'catalog' %}</a> / <a href="{% url 'catalog:list' %}?naqsh={{ panel.pattern.series }}">{{ panel.pattern.name }}</a> / {{ panel.code }}</div>

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load site_tags %}
+{% block title %}404 — Metal Apex{% endblock %}
+{% block seo %}<meta name="robots" content="noindex">{% endblock %}
+{% block content %}
+<section class="sec message"><div class="wrap">
+  <div class="lbl">404</div>
+  <h1 class="t">{% t 'not_found' %}</h1>
+  <p><a class="btn" href="{% url 'core:home' %}">{% t 'to_home' %} →</a></p>
+</div></section>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load site_tags %}
+{% block title %}{% t 'nav_about' %} — Metal Apex{% endblock %}
+{% block content %}
+<section class="sec"><div class="wrap prose-wrap">
+  <h1 class="t">{% if about.title %}{{ about.title }}{% else %}{% t 'nav_about' %}{% endif %}</h1>
+  <div class="prose">{{ about.body|safe }}</div>
+</div></section>
+{% include "includes/lead_form.html" %}
+{% endblock %}

@@ -1,5 +1,19 @@
 "use strict";
 
+const lightbox = document.getElementById("lightbox");
+if (lightbox && lightbox.showModal) {
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[data-lightbox]");
+    if (!link || event.metaKey || event.ctrlKey) return;
+    event.preventDefault();
+    lightbox.querySelector("img").src = link.href;
+    lightbox.showModal();
+  });
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) lightbox.close();
+  });
+}
+
 document.addEventListener("click", (event) => {
   const video = event.target.closest("[data-youtube-id]");
   if (!video) return;
