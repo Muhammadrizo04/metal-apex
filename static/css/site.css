@@ -100,6 +100,7 @@ a { color: inherit; }
 .proj { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-auto-rows: 230px; gap: 12px; }
 .proj figure { margin: 0; position: relative; overflow: hidden; }
 .proj figure.big { grid-row: span 2; }
+.proj figure:nth-child(4):last-child { grid-column: span 2; }
 .proj img { width: 100%; height: 100%; object-fit: cover; }
 .proj figcaption { position: absolute; left: 12px; bottom: 12px; background: rgba(28, 28, 28, .78); color: #fff; font-size: 14px; padding: 4px 10px; }
 
@@ -153,7 +154,7 @@ a { color: inherit; }
 .sw a.on { border: 2px solid var(--cu-dark); }
 .sw img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; }
 
-.lead { background: var(--ink); color: #f4f1ec; padding-block: 64px; }
+.lead { background: var(--ink); color: #f4f1ec; padding-block: 64px; scroll-margin-top: 68px; }
 .lead-in { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
 .lead .lbl { color: #e0935a; }
 .lead p { color: #cfc8bf; font-size: 15px; line-height: 1.8; margin: 0; }

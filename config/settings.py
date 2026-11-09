@@ -67,7 +67,15 @@ TEMPLATES = [
     },
 ]
 
-DATABASES = {"default": env.db("DATABASE_URL", default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}")}
+
+def absolute_sqlite(db: dict, base: Path) -> dict:
+    """Nisbiy SQLite yo'li server qaysi papkadan ishga tushishiga bog'liq bo'lmasligi kerak."""
+    if db["ENGINE"].endswith("sqlite3") and not Path(db["NAME"]).is_absolute():
+        db = {**db, "NAME": str(base / db["NAME"])}
+    return db
+
+
+DATABASES = {"default": absolute_sqlite(env.db("DATABASE_URL", default="sqlite:///db.sqlite3"), BASE_DIR)}
 
 CACHES = {
     "default": {

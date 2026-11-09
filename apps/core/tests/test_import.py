@@ -142,11 +142,10 @@ class ImportCommandTests(TestCase):
         self.assertIn("1", Path(home.hero_image.name).stem)
         self.assertTrue(home.montage_image)
 
-    def test_projects_unique_and_copper_hidden(self):
+    def test_projects_unique_and_unverified_photos_hidden(self):
         self.run_import()
-        self.assertEqual(Project.objects.count(), 3)
-        self.assertEqual(Project.objects.filter(is_published=False).count(), 1)
-        self.assertEqual(Project.objects.get(wp_id=202).is_published, False)
+        self.assertEqual(Project.objects.count(), 4)
+        self.assertEqual(set(Project.objects.filter(is_published=False).values_list("wp_id", flat=True)), {202, 205})
 
     def test_video_imported(self):
         self.run_import()
@@ -157,7 +156,7 @@ class ImportCommandTests(TestCase):
         self.run_import()
         self.assertEqual(Panel.objects.count(), 6)
         self.assertEqual(Accessory.objects.count(), 2)
-        self.assertEqual(Project.objects.count(), 3)
+        self.assertEqual(Project.objects.count(), 4)
         self.assertEqual(Layer.objects.count(), 1)
 
     def test_reimport_keeps_admin_edits(self):

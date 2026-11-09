@@ -68,4 +68,6 @@ STATS = [
 PANEL_SPECS = {"metal_mm": "0.30", "foam_mm": 16, "weight_kg_m2": "3.8", "lifetime_years": 50}
 
 MAP_BASE = "https://yandex.uz/map-widget/v1/?text="
-HIDDEN_PROJECT_SUFFIX = "2024/07/11.jpg"
+# Eski slayder rasmlari: boshqa kompaniya reklamasi yoki tayyor rasmlar bo'lishi mumkin.
+# Boshqaruvchi o'z ishi deb tasdiqlasa, admin'dan ochiladi.
+HIDDEN_PROJECT_SUFFIXES = ("2024/07/11.jpg", "2024/07/12.jpg", "2024/07/13.jpg", "2024/07/14.jpg")

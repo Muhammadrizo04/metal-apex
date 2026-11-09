@@ -146,7 +146,7 @@ Buyruq SQL dumpdan faqat `mx_posts` va `mx_postmeta` jadvallaridagi kerakli yozu
 
 Maxsus holatlar:
 - `G3-01` kodi ikki xil panelda. Birinchisi `G3-01` bo'lib ochiq turadi, ikkinchisi `G3-01-2` kodi bilan `is_published=False`da qoladi va boshqaruvchi to'g'ri kodni aytguncha ko'rinmaydi. Shu sababli import 67 yozuv yaratadi, lekin saytda dastlab 66 panel ko'rinadi.
-- `2024/07/11.jpg` (mis fasad, internetdan bo'lishi mumkin) `is_published=False`da import qilinadi. Boshqaruvchi tasdiqlasa ochiladi.
+- Eski slayderdagi `2024/07/11.jpg`, `12.jpg`, `13.jpg`, `14.jpg` (mis fasad, tayyor uy rasmlari va boshqa kompaniya reklamasi yozilgan foto) `is_published=False`da import qilinadi. Boshqaruvchi o'zining ishi deb tasdiqlasa ochiladi.
 - Eski matnlardagi "Engil vazn" kabi imlo va mashina tarjimasi xatolari saqlanib qoladi. Ularni admin'dan tuzatish mumkin.
 
 Naqsh turlari (taklif, boshqaruvchi tasdiqlaydi): 1 Mayda g'isht, 2 Ingichka g'isht, 3 Tekis tekstura, 4 Keng panel, 5 Yirik tosh, 6 Chiziqli.

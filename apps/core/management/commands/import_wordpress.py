@@ -132,7 +132,7 @@ class Command(BaseCommand):
             if rel in seen_files or Project.objects.filter(wp_id=wp_id).exists():
                 continue
             seen_files.add(rel)
-            project = Project(wp_id=wp_id, order=order, is_published=not rel.endswith(seed.HIDDEN_PROJECT_SUFFIX))
+            project = Project(wp_id=wp_id, order=order, is_published=not rel.endswith(seed.HIDDEN_PROJECT_SUFFIXES))
             if self._attach(project.image, wp_id):
                 project.save()
 
@@ -148,7 +148,7 @@ class Command(BaseCommand):
             if self.files.get(wp_id, "").endswith("/1.jpg"):
                 return wp_id
         for wp_id in ids:
-            if not self.files.get(wp_id, "").endswith(seed.HIDDEN_PROJECT_SUFFIX):
+            if not self.files.get(wp_id, "").endswith(seed.HIDDEN_PROJECT_SUFFIXES):
                 return wp_id
         return None
 
